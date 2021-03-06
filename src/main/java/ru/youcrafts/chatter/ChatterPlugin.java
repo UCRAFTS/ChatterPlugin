@@ -10,6 +10,7 @@ import org.bukkit.plugin.java.annotation.plugin.Description;
 import org.bukkit.plugin.java.annotation.plugin.Plugin;
 import org.bukkit.plugin.java.annotation.plugin.author.Author;
 import ru.youcrafts.chatter.commands.PersonalMessageCommand;
+import ru.youcrafts.chatter.commands.ReloadCommand;
 import ru.youcrafts.chatter.listeners.ChatListener;
 import ru.youcrafts.chatter.manager.ChannelManager;
 
@@ -63,13 +64,14 @@ public class ChatterPlugin extends JavaPlugin
     private void registerCommands()
     {
         ChatterPlugin.commandManager.registerCommand(new PersonalMessageCommand(ChatterPlugin.config));
+        ChatterPlugin.commandManager.registerCommand(new ReloadCommand(ChatterPlugin.config, ChatterPlugin.channelManager));
     }
 
 
     private void registerListeners()
     {
         Bukkit.getPluginManager().registerEvents(
-                new ChatListener(ChatterPlugin.config, ChatterPlugin.channelManager), this
+                new ChatListener(ChatterPlugin.channelManager), this
         );
     }
 }

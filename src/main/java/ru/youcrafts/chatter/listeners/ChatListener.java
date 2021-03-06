@@ -4,7 +4,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import ru.youcrafts.chatter.Config;
 import ru.youcrafts.chatter.channels.ChatHandlerInterface;
 import ru.youcrafts.chatter.manager.ChannelManager;
 
@@ -14,13 +13,11 @@ public class ChatListener implements Listener
 {
 
 
-    private final Config config;
     private final HashMap<String, ChatHandlerInterface> channels;
 
 
-    public ChatListener(Config config, ChannelManager channelManager)
+    public ChatListener(ChannelManager channelManager)
     {
-        this.config = config;
         this.channels = channelManager.getChannels();
     }
 

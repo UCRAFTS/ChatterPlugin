@@ -6,6 +6,7 @@ public enum ConfigType
 {
 
     FORMAT("format"),
+    RELOAD_MESSAGE("reloadMessage"),
     COLORS_PERMISSION("colorsPermission"),
     LOCAL_CHAT_RADIUS("channels.local.radius"),
     LOCAL_CHAT_PREFIX("channels.local.prefix"),

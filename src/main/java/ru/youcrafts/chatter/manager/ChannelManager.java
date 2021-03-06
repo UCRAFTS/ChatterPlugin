@@ -32,6 +32,8 @@ public class ChannelManager
 
     public void registerChannels()
     {
+        this.channels.clear();
+
         Reflections reflections = new Reflections("ru.youcrafts.chatter.channels");
         Set<Class<? extends ChatHandlerInterface>> channelClasses = reflections.getSubTypesOf(ChatHandlerInterface.class);
 
@@ -48,7 +50,6 @@ public class ChannelManager
                             | InvocationTargetException
                             | NoSuchMethodException e
             ) {
-                System.out.println();
                 Bukkit.getLogger().info(e.getMessage());
             }
         }

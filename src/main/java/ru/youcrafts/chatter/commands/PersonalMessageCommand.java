@@ -4,6 +4,8 @@ import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.CommandCompletion;
 import co.aikar.commands.annotation.Syntax;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
@@ -22,7 +24,7 @@ public class PersonalMessageCommand extends BaseCommand
 
 
     private final Config config;
-    private HashMap<UUID, UUID> replyList = new HashMap<>();
+    private final HashMap<UUID, UUID> replyList = new HashMap<>();
 
 
     public PersonalMessageCommand(Config config)
@@ -97,19 +99,21 @@ public class PersonalMessageCommand extends BaseCommand
 
     private void sendPersonalMessage(CommandSender sender, Player recipient, String message)
     {
-        message = sender.hasPermission(this.config.getConfig().getString(ConfigType.COLORS_PERMISSION.getName()))
-                ? Utils.colorize(message)
-                : message;
-
-        message = String.format(
-                this.config.getConfig().getString(ConfigType.PERSONAL_MESSAGE_FORMAT.getName()), sender.getName(), recipient.getName(), message
+        String formatter = String.format(
+                this.config.getConfig().getString(ConfigType.PERSONAL_MESSAGE_FORMAT.getName()), sender.getName(), recipient.getName()
         );
 
-        sender.sendMessage(message);
-        recipient.sendMessage(message);
+        if (sender.hasPermission(this.config.getConfig().getString(ConfigType.COLORS_PERMISSION.getName()))) {
+            formatter = Utils.colorize(formatter);
+        }
+
+        formatter = formatter + message;
+
+        sender.sendMessage(formatter);
+        recipient.sendMessage(formatter);
         recipient.playSound(recipient.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5, 1);
 
-        Utils.log(sender, message);
+        Utils.log(sender, formatter);
 
         if (!(sender instanceof ConsoleCommandSender)) {
             Player player = (Player) sender;

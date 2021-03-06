@@ -46,15 +46,15 @@ public abstract class AbstractChatHandler
             message = Utils.colorize(message);
         }
 
+        String formatted = this.config.getConfig().getString(ConfigType.FORMAT.getName());
         String prefix = ChatterPlugin.getInstance().chat.getPlayerPrefix(player);
         String suffix = ChatterPlugin.getInstance().chat.getPlayerSuffix(player);
 
-        return String.format(
-                this.config.getConfig().getString(ConfigType.FORMAT.getName()),
-                prefix,
-                suffix,
-                player.getName(),
-                message
-        );
+        return Utils.colorize(
+                formatted
+                        .replace("{group}", prefix)
+                        .replace("{color}", suffix)
+                        .replace("{player}", player.getName())
+        ) + message;
     }
 }

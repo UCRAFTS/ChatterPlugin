@@ -56,11 +56,12 @@ public class Utils
     {
         Location location = player.getLocation();
         String log = String.format(
-                "[%s][%s,%s,%s]%s",
+                "[%s][%s,%s,%s] %s: %s",
                 location.getWorld().getName(),
                 (int) location.getX(),
                 (int) location.getY(),
                 (int) location.getZ(),
+                player.getName(),
                 message
         );
 
