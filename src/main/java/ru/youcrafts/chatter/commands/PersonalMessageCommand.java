@@ -99,12 +99,14 @@ public class PersonalMessageCommand extends BaseCommand
 
     private void sendPersonalMessage(CommandSender sender, Player recipient, String message)
     {
-        String formatter = String.format(
-                this.config.getConfig().getString(ConfigType.PERSONAL_MESSAGE_FORMAT.getName()), sender.getName(), recipient.getName()
+        String formatter = Utils.colorize(
+                String.format(
+                    this.config.getConfig().getString(ConfigType.PERSONAL_MESSAGE_FORMAT.getName()), sender.getName(), recipient.getName()
+                )
         );
 
         if (sender.hasPermission(this.config.getConfig().getString(ConfigType.COLORS_PERMISSION.getName()))) {
-            formatter = Utils.colorize(formatter);
+            message = Utils.colorize(message);
         }
 
         formatter = formatter + message;
