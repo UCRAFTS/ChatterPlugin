@@ -21,7 +21,7 @@ public class Config
 
     public void init()
     {
-        this.config.setDefault(ConfigType.FORMAT.getName(), "{group} &r{color}{player} &8➟ &7");
+        this.config.setDefault(ConfigType.FORMAT.getName(), "{group}&r{color}{player} &8➟ &7");
         this.config.setDefault(ConfigType.COLORS_PERMISSION.getName(), "chatter.colors");
         this.config.setDefault(ConfigType.SPACE_AFTER_GROUP.getName(), true);
         this.config.setDefault(ConfigType.LOCAL_CHAT_RADIUS.getName(), 100);

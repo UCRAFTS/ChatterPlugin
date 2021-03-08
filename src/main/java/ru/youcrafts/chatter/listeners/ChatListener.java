@@ -22,7 +22,7 @@ public class ChatListener implements Listener
     }
 
 
-    @EventHandler(priority = EventPriority.HIGH)
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onChat(final AsyncPlayerChatEvent event) {
         String symbol = event.getMessage().substring(0, 1);
 
