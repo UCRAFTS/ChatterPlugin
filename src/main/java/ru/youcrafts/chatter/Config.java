@@ -23,6 +23,7 @@ public class Config
     {
         this.config.setDefault(ConfigType.FORMAT.getName(), "{group} &r{color}{player} &8➟ &7");
         this.config.setDefault(ConfigType.COLORS_PERMISSION.getName(), "chatter.colors");
+        this.config.setDefault(ConfigType.SPACE_AFTER_GROUP.getName(), true);
         this.config.setDefault(ConfigType.LOCAL_CHAT_RADIUS.getName(), 100);
         this.config.setDefault(ConfigType.LOCAL_CHAT_PREFIX.getName(), " &8&l• &r");
         this.config.setDefault(ConfigType.LOCAL_CHAT_NOTIFY.getName(), " &l&c• &cВаше сообщение видят игроки в радиусе &7%s &cблоков от Вас.\n &l&c• &cДобавьте в начале сообщения &8«&l&7%s&8» &cдабы его видели все!");

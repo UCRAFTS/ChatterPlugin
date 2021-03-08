@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.annotation.dependency.Dependency;
+import org.bukkit.plugin.java.annotation.dependency.SoftDependency;
 import org.bukkit.plugin.java.annotation.plugin.Description;
 import org.bukkit.plugin.java.annotation.plugin.Plugin;
 import org.bukkit.plugin.java.annotation.plugin.author.Author;
@@ -21,6 +22,7 @@ import ru.youcrafts.chatter.manager.ChannelManager;
 @Author(value = "oDD1 / Alexander Repin")
 @Description(value = "Chat plugin. Channels, personal messages and colors")
 @Dependency(value = "Vault")
+@SoftDependency(value = "PlaceholderAPI")
 public class ChatterPlugin extends JavaPlugin
 {
 
@@ -28,7 +30,9 @@ public class ChatterPlugin extends JavaPlugin
     private static ChatterPlugin plugin;
     private static Config config;
     private static PaperCommandManager commandManager;
+
     public static ChannelManager channelManager;
+    public static boolean hasPAPI = false;
 
     public Chat chat;
 
@@ -36,6 +40,10 @@ public class ChatterPlugin extends JavaPlugin
     @Override
     public void onEnable()
     {
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            ChatterPlugin.hasPAPI = true;
+        }
+
         ChatterPlugin.plugin = this;
         ChatterPlugin.commandManager = new PaperCommandManager(this);
         ChatterPlugin.config = new Config(this);

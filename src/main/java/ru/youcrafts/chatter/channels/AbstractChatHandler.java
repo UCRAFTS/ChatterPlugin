@@ -1,5 +1,6 @@
 package ru.youcrafts.chatter.channels;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import ru.youcrafts.chatter.ChatterPlugin;
@@ -50,11 +51,21 @@ public abstract class AbstractChatHandler
         String prefix = ChatterPlugin.getInstance().chat.getPlayerPrefix(player);
         String suffix = ChatterPlugin.getInstance().chat.getPlayerSuffix(player);
 
-        return Utils.colorize(
+        if (prefix != null && prefix.length() > 0 && this.config.getConfig().getBoolean(ConfigType.SPACE_AFTER_GROUP.getName())) {
+            prefix+= " ";
+        }
+
+        formatted = Utils.colorize(
                 formatted
                         .replace("{group}", prefix)
                         .replace("{color}", suffix)
                         .replace("{player}", player.getName())
-        ) + message;
+        );
+
+        if (ChatterPlugin.hasPAPI) {
+            formatted = PlaceholderAPI.setPlaceholders(player, formatted);
+        }
+
+        return formatted + message;
     }
 }
