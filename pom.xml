@@ -94,6 +94,10 @@
                     <dependencyReducedPomLocation>${project.build.directory}/dependency-reduced-pom.xml</dependencyReducedPomLocation>
                     <relocations>
                         <relocation>
+                            <pattern>org.reflections</pattern>
+                            <shadedPattern>ru.youcrafts.chatter.reflection</shadedPattern>
+                        </relocation>
+                        <relocation>
                             <pattern>co.aikar.commands</pattern>
                             <shadedPattern>ru.youcrafts.chatter.acf</shadedPattern>
                         </relocation>
